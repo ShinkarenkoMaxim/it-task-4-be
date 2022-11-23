@@ -2,13 +2,13 @@
 import * as dotenv from 'dotenv';
 dotenv.config({ path: `${__dirname}/../.env` });
 
-import express, { Request, Response } from 'express';
+import express from 'express';
+import routes from './routes';
 
 const app = express();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello world');
-});
+app.use(express.json());
+app.use(routes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server has been started at ${process.env.PORT}`);
